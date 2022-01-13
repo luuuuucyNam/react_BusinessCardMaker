@@ -1,0 +1,10 @@
+@value makerLightPink,makerWhite,makerBlack from '../../common/color.css';
+
+.maker {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  background-color: makerWhite;
+  text-align: center;
+  justify-content: center;
+}
