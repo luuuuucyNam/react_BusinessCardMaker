@@ -1,0 +1,36 @@
+@value makerLightPink,makerWhite,makerBlack from '../../common/color.css';
+
+.login {
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  background-color: makerWhite;
+  text-align: center;
+  justify-content: center;
+}
+
+.list {
+  list-style: none;
+  padding: 0.5em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  margin-bottom: 0.4em;
+}
+
+.button {
+  border-radius: 1.25em;
+  border: 1px solid #000;
+  outline: 0;
+  width: 100%;
+  background-color: transparent;
+  height: 2.5em;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: makerLightPink;
+}
