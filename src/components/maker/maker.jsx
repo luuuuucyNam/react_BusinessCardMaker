@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Editor from "../editor/editor";
 import Footer from "../footer/footer";
@@ -7,6 +7,19 @@ import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
 const Maker = ({ authService }) => {
+  const [cards, setCards] = useState([
+    {
+      id: "1",
+      name: "Test1",
+      company: "Company1",
+      title: "Developer1",
+      email: "test@test.com",
+      message: "test is a test",
+      theme: "dark",
+      fileName: "test",
+      fileURL: null,
+    },
+  ]);
   const naviagate = useNavigate();
   const onLogout = () => {
     authService.logout();
@@ -24,8 +37,8 @@ const Maker = ({ authService }) => {
     <section className={styles.makerLayout}>
       <Header onLogout={onLogout} />
       <div className={styles.makerItem}>
-        <Editor />
-        <Preview />
+        <Editor cards={cards} />
+        <Preview cards={cards} />
       </div>
       <Footer />
     </section>

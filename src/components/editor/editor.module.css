@@ -1,8 +1,10 @@
-@value makerGreen,makerWhite from '../../common/color.css';
+@value makerGreen,makerWhite,makerLightGrey from '../../common/color.css';
 
 .maker {
   flex-basis: 50%;
   background-color: makerWhite;
+  border: 1px solid makerLightGrey;
+  padding: 0.5em 2em;
 }
 
 .title {
@@ -10,4 +12,13 @@
   text-align: center;
   width: 100%;
   margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0em 3em;
 }
