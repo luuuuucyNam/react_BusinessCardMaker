@@ -25,7 +25,7 @@ function getStyles(theme) {
   switch (theme) {
     case "dark":
       return styles.dark;
-    case "lgiht":
+    case "light":
       return styles.light;
     case "colorful":
       return styles.colorful;

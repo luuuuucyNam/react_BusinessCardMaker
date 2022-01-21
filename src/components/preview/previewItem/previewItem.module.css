@@ -1,8 +1,7 @@
-@value makerGreen,makerWhite,makerShadow,makerBlack,makerWheat from '../../../common/color.css';
+@value makerGreen,makerWhite,makerShadow,makerBlack,makerWheat,makerColorful from '../../../common/color.css';
 
 .container {
   display: flex;
-  background-color: makerGreen;
   border-radius: 1em;
   align-items: center;
   padding: 0.2em;
@@ -23,7 +22,7 @@
 }
 
 .container.colorful {
-  background-color: makerColorful;
+  background: makerColorful;
 }
 
 .imageBox {
