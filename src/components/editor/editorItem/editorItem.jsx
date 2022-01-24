@@ -10,8 +10,7 @@ const EditorItem = ({ FileInput, card, updateCard, deleteCard }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
-  const { name, company, title, email, message, fileName, fileURL, theme } =
-    card;
+  const { name, company, title, email, message, fileName, theme } = card;
   const onChange = (event) => {
     if (event.currentTarget === null) {
       return;
