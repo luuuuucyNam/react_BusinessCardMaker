@@ -3,7 +3,7 @@ import Button from "../../button/button";
 import FileInputUpload from "../../file_input_upload/file_input_upload";
 import styles from "./editorItem.module.css";
 
-const EditorItem = ({ card, updateCard, deleteCard }) => {
+const EditorItem = ({ FileInput, card, updateCard, deleteCard }) => {
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
@@ -24,6 +24,14 @@ const EditorItem = ({ card, updateCard, deleteCard }) => {
   };
   const onSubmit = () => {
     deleteCard(card);
+  };
+
+  const onFileChange = (file) => {
+    updateCard({
+      ...card,
+      fileName: file.name,
+      fileURL: file.url,
+    });
   };
   return (
     <form className={styles.form}>
@@ -78,7 +86,7 @@ const EditorItem = ({ card, updateCard, deleteCard }) => {
         onChange={onChange}
       ></textarea>
       <div className={styles.fileInput}>
-        <FileInputUpload />
+        <FileInput onFileChange={onFileChange} name={fileName} />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>

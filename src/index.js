@@ -4,11 +4,19 @@ import "./index.module.css";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
 import AuthService from "./service/auth_service";
+import CloudinaryService from "./service/cloudinary_service";
+import FileInputUpload from "./components/file_input_upload/file_input_upload";
 
 const authService = new AuthService();
+const cloudinaryService = new CloudinaryService(
+  process.env.REACT_APP_CLIOUDINARY_CLOUD_NAME
+);
+const FileInput = (props) => (
+  <FileInputUpload {...props} cloudinaryService={cloudinaryService} />
+);
 ReactDOM.render(
   <React.StrictMode>
-    <App authService={authService} />
+    <App authService={authService} FileInput={FileInput} />
   </React.StrictMode>,
   document.getElementById("root")
 );
