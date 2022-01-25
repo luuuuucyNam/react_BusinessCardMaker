@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Editor from "../editor/editor";
 import Footer from "../footer/footer";
@@ -21,13 +21,11 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
 
   useEffect(() => {
     if (!userId) return;
-
     const stopSync = cardRepository.syncCards(userId, (cards) => {
       setCards(cards);
     });
-
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     authService.onAuthChanged((user) => {
@@ -37,7 +35,7 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
         naviagate("/");
       }
     });
-  });
+  }, [authService, naviagate]);
 
   const createOrUpdateCard = (card) => {
     setCards((cards) => {

@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import Button from "../../button/button";
-import FileInputUpload from "../../file_input_upload/file_input_upload";
 import styles from "./editorItem.module.css";
 
 const EditorItem = ({ FileInput, card, updateCard, deleteCard }) => {

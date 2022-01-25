@@ -1,5 +1,3 @@
-import axios from "axios";
-
 class CloudinaryService {
   async processFile(file) {
     console.log(file);
