@@ -6,17 +6,22 @@ import reportWebVitals from "./reportWebVitals";
 import AuthService from "./service/auth_service";
 import CloudinaryService from "./service/cloudinary_service";
 import FileInputUpload from "./components/file_input_upload/file_input_upload";
+import CardRepository from "./service/card_repository";
 
 const authService = new AuthService();
-const cloudinaryService = new CloudinaryService(
-  process.env.REACT_APP_CLIOUDINARY_CLOUD_NAME
-);
+const cloudinaryService = new CloudinaryService();
+const cardRepository = new CardRepository();
+
 const FileInput = (props) => (
   <FileInputUpload {...props} cloudinaryService={cloudinaryService} />
 );
 ReactDOM.render(
   <React.StrictMode>
-    <App authService={authService} FileInput={FileInput} />
+    <App
+      authService={authService}
+      FileInput={FileInput}
+      cardRepository={cardRepository}
+    />
   </React.StrictMode>,
   document.getElementById("root")
 );

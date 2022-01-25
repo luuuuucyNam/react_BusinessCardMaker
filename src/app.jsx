@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Maker from "./components/maker/maker";
 
-function App({ authService, FileInput }) {
+function App({ authService, FileInput, cardRepository }) {
   // const [auth, setAuth] = useState(null); // ME
 
   return (
@@ -27,7 +27,13 @@ function App({ authService, FileInput }) {
         <Routes>
           <Route
             path="/maker"
-            element={<Maker authService={authService} FileInput={FileInput} />}
+            element={
+              <Maker
+                authService={authService}
+                FileInput={FileInput}
+                cardRepository={cardRepository}
+              />
+            }
           />
           <Route path="/" element={<Login authService={authService} />} />
         </Routes>

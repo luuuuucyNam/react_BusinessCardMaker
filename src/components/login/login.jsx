@@ -8,10 +8,7 @@ const Login = ({ authService, setAuth }) => {
   const naviagate = useNavigate(); // DreamCoading
   const goToMaker = (userId) => {
     // DreamCoading
-    naviagate({
-      pathname: "/maker",
-      state: { id: userId },
-    });
+    naviagate("/maker", { state: { id: userId } });
   };
   const onLogin = (event) => {
     authService //
@@ -23,7 +20,7 @@ const Login = ({ authService, setAuth }) => {
   // DreamCoading
   useEffect(() => {
     authService.onAuthChanged((user) => {
-      user && goToMaker(user.id);
+      user && goToMaker(user.uid);
     });
   });
 

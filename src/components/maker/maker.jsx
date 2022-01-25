@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Editor from "../editor/editor";
 import Footer from "../footer/footer";
@@ -6,51 +7,33 @@ import Header from "../header/header";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
-const Maker = ({ authService, FileInput }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: "1",
-      name: "Test1",
-      company: "Company1",
-      title: "Developer1",
-      email: "test@test.com",
-      message: "test is a test",
-      theme: "colorful",
-      fileName: "test",
-      fileURL: null,
-    },
-    2: {
-      id: "2",
-      name: "Test2",
-      company: "Company2",
-      title: "Developer2",
-      email: "test@test.com",
-      message: "test is a test",
-      theme: "dark",
-      fileName: "test",
-      fileURL: null,
-    },
-    3: {
-      id: "3",
-      name: "Test3",
-      company: "Company3",
-      title: "Developer3",
-      email: "test@test.com",
-      message: "test is a test",
-      theme: "dark",
-      fileName: "test",
-      fileURL: null,
-    },
-  });
+const Maker = ({ authService, FileInput, cardRepository }) => {
+  const params = useLocation();
+  const paramState = params?.state;
+  const [userId, setUserId] = useState(paramState && paramState.id);
+  const [cards, setCards] = useState({});
   const naviagate = useNavigate();
+
   const onLogout = () => {
     authService.logout();
     // setAuth(null);s
   };
 
   useEffect(() => {
+    if (!userId) return;
+
+    const stopSync = cardRepository.syncCards(userId, (cards) => {
+      setCards(cards);
+    });
+
+    return () => stopSync();
+  }, [userId]);
+
+  useEffect(() => {
     authService.onAuthChanged((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else {
         naviagate("/");
       }
     });
@@ -62,6 +45,7 @@ const Maker = ({ authService, FileInput }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const deleteCard = (card) => {
@@ -70,6 +54,7 @@ const Maker = ({ authService, FileInput }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   return (
